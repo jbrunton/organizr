@@ -1,4 +1,4 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.listsdemo.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;

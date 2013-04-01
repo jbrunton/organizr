@@ -1,5 +1,8 @@
 package com.jbrunton.listsdemo;
 
+
+import com.jbrunton.listsdemo.models.Task;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;

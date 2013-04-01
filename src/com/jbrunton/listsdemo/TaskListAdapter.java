@@ -2,6 +2,9 @@ package com.jbrunton.listsdemo;
 
 import java.util.List;
 
+import com.jbrunton.listsdemo.models.Task;
+
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Paint;
