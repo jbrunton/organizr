@@ -8,7 +8,9 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 public class MainActivity extends FragmentActivity implements
-		ActionBar.TabListener {
+		ActionBar.TabListener,
+		TaskListFragment.Callbacks
+		{
 	
 		/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -89,5 +91,11 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onTabReselected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
+	}
+
+	@Override
+	public void onItemSelected(String id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
