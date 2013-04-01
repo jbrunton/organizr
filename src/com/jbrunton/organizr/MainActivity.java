@@ -50,7 +50,9 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public void onTaskSelected(String id) {
-		
+		Intent detailIntent = new Intent(this, TaskDetailActivity.class);
+		detailIntent.putExtra(TaskDetailFragment.ARG_ITEM_ID, id);
+		this.startActivity(detailIntent);
 	}
 
 	@Override
