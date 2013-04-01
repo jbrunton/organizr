@@ -2,10 +2,8 @@ package com.jbrunton.listsdemo;
 
 import java.util.List;
 
-import com.jbrunton.listsdemo.models.Task;
-
-
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+
+import com.jbrunton.listsdemo.models.Task;
 
 public class TaskListAdapter extends ArrayAdapter<Task> {
 
@@ -54,6 +54,14 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 					description.setTextColor(defaultColor);
 				}
 				description.setPaintFlags(paintFlags);
+			}
+		});
+		description.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent detailIntent = new Intent(context, TaskDetailActivity.class);
+				detailIntent.putExtra(TaskDetailFragment.ARG_ITEM_ID, task.id);
+				context.startActivity(detailIntent);
 			}
 		});
 		description.setText(list.get(position).description);
