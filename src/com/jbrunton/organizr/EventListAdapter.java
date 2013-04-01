@@ -1,8 +1,8 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.organizr;
 
 import java.util.List;
 
-import com.jbrunton.listsdemo.models.Event;
+import com.jbrunton.organizr.models.Event;
 
 
 import android.app.Activity;

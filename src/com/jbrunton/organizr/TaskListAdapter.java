@@ -1,4 +1,4 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.organizr;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.jbrunton.listsdemo.models.Task;
+import com.jbrunton.organizr.models.Task;
 
 public class TaskListAdapter extends ArrayAdapter<Task> {
 

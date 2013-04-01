@@ -1,7 +1,7 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.organizr;
 
 
-import com.jbrunton.listsdemo.models.Task;
+import com.jbrunton.organizr.models.Task;
 
 import android.app.Activity;
 import android.os.Bundle;

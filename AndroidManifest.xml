@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jbrunton.listsdemo"
+    package="com.jbrunton.organizr"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.jbrunton.listsdemo.MainActivity"
+            android:name="com.jbrunton.organizr.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jbrunton.listsdemo.TaskDetailActivity"
+            android:name="com.jbrunton.organizr.TaskDetailActivity"
             android:label="@string/title_task_detail"
             android:parentActivityName=".TaskListActivity" >
             <meta-data

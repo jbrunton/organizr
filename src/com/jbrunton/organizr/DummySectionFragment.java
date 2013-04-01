@@ -1,4 +1,4 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.organizr;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -1,4 +1,4 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.organizr;
 
 import java.util.Locale;
 

@@ -1,4 +1,4 @@
-package com.jbrunton.listsdemo;
+package com.jbrunton.organizr;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.jbrunton.listsdemo.models.Task;
+import com.jbrunton.organizr.models.Task;
 
 /**
  * A fragment representing a single Task detail screen. This fragment is either
