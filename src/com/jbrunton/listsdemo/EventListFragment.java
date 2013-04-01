@@ -1,7 +1,7 @@
 package com.jbrunton.listsdemo;
 
 
-import com.jbrunton.listsdemo.models.Task;
+import com.jbrunton.listsdemo.models.Event;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 
 /**
- * A list fragment representing a list of Tasks. This fragment also supports
+ * A list fragment representing a list of Events. This fragment also supports
  * tablet devices by allowing list items to be given an 'activated' state upon
  * selection. This helps indicate which item is currently being viewed in a
  * {@link TaskDetailFragment}.
@@ -18,7 +18,7 @@ import android.widget.ListView;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class TaskListFragment extends ListFragment {
+public class EventListFragment extends ListFragment {
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -46,7 +46,7 @@ public class TaskListFragment extends ListFragment {
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		public void onTaskSelected(String id);
+		public void onEventSelected(String id);
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class TaskListFragment extends ListFragment {
 	 */
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
-		public void onTaskSelected(String id) {
+		public void onEventSelected(String id) {
 		}
 	};
 
@@ -63,7 +63,7 @@ public class TaskListFragment extends ListFragment {
 	 * Mandatory empty constructor for the fragment manager to instantiate the
 	 * fragment (e.g. upon screen orientation changes).
 	 */
-	public TaskListFragment() {
+	public EventListFragment() {
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class TaskListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		// TODO: replace with a real list adapter.
-		setListAdapter(new TaskListAdapter(this.getActivity(), Task.TASKS));
+		setListAdapter(new EventListAdapter(this.getActivity(), Event.EVENTS));
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class TaskListFragment extends ListFragment {
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-		mCallbacks.onTaskSelected(Task.TASKS.get(position).id);
+		mCallbacks.onEventSelected(Event.EVENTS.get(position).id);
 	}
 
 	@Override

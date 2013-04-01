@@ -6,7 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 
 public class MainActivity extends FragmentActivity implements
-		TaskListFragment.Callbacks
+		TaskListFragment.Callbacks,
+		EventListFragment.Callbacks
 		{
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -47,7 +48,13 @@ public class MainActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void onItemSelected(String id) {
+	public void onTaskSelected(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onEventSelected(String id) {
 		// TODO Auto-generated method stub
 		
 	}
