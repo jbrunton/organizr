@@ -6,8 +6,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -36,11 +38,13 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflator = context.getLayoutInflater();
-		View view = inflator.inflate(R.layout.task_list_item, null);
+		final View view = inflator.inflate(R.layout.task_list_item, null);
+		
 		final TextView description = (TextView) view.findViewById(R.id.description);
 		final CheckBox complete = (CheckBox) view.findViewById(R.id.complete);
 		final Task task = list.get(position);
 		final int defaultColor = description.getTextColors().getDefaultColor();
+		
 		complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -56,6 +60,7 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 				description.setPaintFlags(paintFlags);
 			}
 		});
+		
 		description.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -64,8 +69,29 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 				context.startActivity(detailIntent);
 			}
 		});
+		
+		// TouchDelegate to make check box easier to click ÐÊsee
+		// http://stackoverflow.com/a/1343796
+		//
+		view.post( new Runnable() {
+		    // Post in the parent's message queue to make sure the parent
+		    // lays out its children before we call getHitRect()
+		    public void run() {
+		        final Rect r = new Rect();
+		        complete.getHitRect(r);
+		        r.top -= 4;
+		        r.bottom += 4;
+		        r.left -= 4;
+		        r.right += 8;
+		        view.setTouchDelegate( new TouchDelegate(r, complete));
+		    }
+		});
+
+
+		
 		description.setText(list.get(position).description);
 		complete.setChecked(list.get(position).complete);
+		
 		return view;
 	}
 }
