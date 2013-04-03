@@ -8,5 +8,6 @@
     <string name="title_section3">Section 3</string>
     <string name="title_task_detail">Edit Task</string>
     <string name="right_arrow">></string>
+    <string name="complete">complete</string>
     
 </resources>
