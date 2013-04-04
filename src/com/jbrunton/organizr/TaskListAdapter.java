@@ -17,6 +17,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.bindroid.BindingMode;
+import com.bindroid.ui.CompoundButtonCheckedProperty;
+import com.bindroid.ui.UiBinder;
 import com.jbrunton.organizr.models.Task;
 
 public class TaskListAdapter extends ArrayAdapter<Task> {
@@ -48,7 +51,6 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 		complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				task.complete = buttonView.isChecked();
 				int paintFlags = description.getPaintFlags();
 				if (buttonView.isChecked()) {
 					paintFlags |= Paint.STRIKE_THRU_TEXT_FLAG;
@@ -87,10 +89,8 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 		    }
 		});
 
-
-		
-		description.setText(list.get(position).description);
-		complete.setChecked(list.get(position).complete);
+		UiBinder.bind(new CompoundButtonCheckedProperty(complete), task, "Complete", BindingMode.TWO_WAY);
+		UiBinder.bind(view, R.id.description, "Text", task, "Description", BindingMode.ONE_WAY);
 		
 		return view;
 	}

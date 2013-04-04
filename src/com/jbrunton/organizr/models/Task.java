@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bindroid.trackable.TrackableField;
+
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
@@ -36,18 +38,24 @@ public class Task {
 	}
 
 	public String id;
-	public String description;
-	public Boolean complete;
+
+	private TrackableField<Boolean> complete = new TrackableField<Boolean>();
+	public Boolean getComplete() { return this.complete.get(); }
+	public void setComplete(Boolean value) { this.complete.set(value); }
+	
+	private TrackableField<String> description = new TrackableField<String>();
+	public String getDescription() { return this.description.get(); }
+	public void setDescription(String value) { this.description.set(value); }
 
 	public Task(String id, String description, Boolean complete) {
 		this.id = id;
-		this.description = description;
-		this.complete = complete;
+		this.setDescription(description);
+		this.setComplete(complete);
 	}
 
 	@Override
 	public String toString() {
-		return description;
+		return this.getDescription();
 	}
 }
 

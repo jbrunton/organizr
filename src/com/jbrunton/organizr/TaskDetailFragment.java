@@ -4,8 +4,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +12,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bindroid.BindingMode;
+import com.bindroid.ui.CompoundButtonCheckedProperty;
+import com.bindroid.ui.EditTextTextProperty;
+import com.bindroid.ui.UiBinder;
 import com.jbrunton.organizr.models.Task;
 
 /**
@@ -68,7 +70,6 @@ public class TaskDetailFragment extends Fragment {
 		complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				task.complete = buttonView.isChecked();
 				int paintFlags = completeLabel.getPaintFlags();
 				if (buttonView.isChecked()) {
 					paintFlags |= Paint.STRIKE_THRU_TEXT_FLAG;
@@ -81,16 +82,8 @@ public class TaskDetailFragment extends Fragment {
 			}
 		});
 		
-		description.addTextChangedListener(new TextWatcher() {
-	        public void afterTextChanged(Editable s) {
-	        	task.description = description.getText().toString();
-	        }
-	        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-	        public void onTextChanged(CharSequence s, int start, int before, int count) {}
-	    });
-
-		description.setText(task.description);
-		complete.setChecked(task.complete);
+		UiBinder.bind(new CompoundButtonCheckedProperty(complete), task, "Complete", BindingMode.TWO_WAY);
+		UiBinder.bind(new EditTextTextProperty(description), task, "Description", BindingMode.TWO_WAY);
 		
 		return rootView;
 	}
