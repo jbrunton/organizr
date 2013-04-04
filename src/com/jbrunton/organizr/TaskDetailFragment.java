@@ -67,21 +67,8 @@ public class TaskDetailFragment extends Fragment {
 		final CheckBox complete = (CheckBox) rootView.findViewById(R.id.complete);
 		final int defaultColor = completeLabel.getTextColors().getDefaultColor();
 
-		complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				int paintFlags = completeLabel.getPaintFlags();
-				if (buttonView.isChecked()) {
-					paintFlags |= Paint.STRIKE_THRU_TEXT_FLAG;
-					completeLabel.setTextColor(Color.GRAY);
-				} else {
-					paintFlags ^= Paint.STRIKE_THRU_TEXT_FLAG;
-					completeLabel.setTextColor(defaultColor);
-				}
-				completeLabel.setPaintFlags(paintFlags);
-			}
-		});
-		
+		UiBinder.bind(rootView, R.id.complete_label, "PaintFlags", task, "Complete", BindingMode.ONE_WAY, new DisabledPaintFlagsConverter(description));
+		UiBinder.bind(rootView, R.id.complete_label, "TextColor", task, "Complete", BindingMode.ONE_WAY, new DisabledColorConverter(Color.GRAY, defaultColor));
 		UiBinder.bind(new CompoundButtonCheckedProperty(complete), task, "Complete", BindingMode.TWO_WAY);
 		UiBinder.bind(new EditTextTextProperty(description), task, "Description", BindingMode.TWO_WAY);
 		
