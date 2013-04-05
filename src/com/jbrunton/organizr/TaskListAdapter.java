@@ -4,8 +4,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.bindroid.BindingMode;
+import com.bindroid.converters.BoolConverter;
+import com.bindroid.ui.CompoundButtonCheckedProperty;
+import com.bindroid.ui.UiBinder;
 import com.jbrunton.organizr.models.Task;
 
 public class TaskListAdapter extends ArrayAdapter<Task> {
@@ -45,22 +48,6 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 		final Task task = list.get(position);
 		final int defaultColor = description.getTextColors().getDefaultColor();
 		
-		complete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				task.complete = buttonView.isChecked();
-				int paintFlags = description.getPaintFlags();
-				if (buttonView.isChecked()) {
-					paintFlags |= Paint.STRIKE_THRU_TEXT_FLAG;
-					description.setTextColor(Color.GRAY);
-				} else {
-					paintFlags ^= Paint.STRIKE_THRU_TEXT_FLAG;
-					description.setTextColor(defaultColor);
-				}
-				description.setPaintFlags(paintFlags);
-			}
-		});
-		
 		description.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -87,10 +74,10 @@ public class TaskListAdapter extends ArrayAdapter<Task> {
 		    }
 		});
 
-
-		
-		description.setText(list.get(position).description);
-		complete.setChecked(list.get(position).complete);
+		UiBinder.bind(view, R.id.description, "PaintFlags", task, "Complete", BindingMode.ONE_WAY, new DisabledPaintFlagsConverter(description));
+		UiBinder.bind(view, R.id.description, "TextColor", task, "Complete", BindingMode.ONE_WAY, new DisabledColorConverter(Color.GRAY, defaultColor));
+		UiBinder.bind(new CompoundButtonCheckedProperty(complete), task, "Complete", BindingMode.TWO_WAY);
+		UiBinder.bind(view, R.id.description, "Text", task, "Description", BindingMode.ONE_WAY);
 		
 		return view;
 	}
